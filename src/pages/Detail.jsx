@@ -31,11 +31,17 @@
 
     return (
         <div className="p-4 flex flex-col text-center justify-center items-center">
-        <Link to="/" className="text-xl font-bold border-2 border-black px-2 rounded-xl hover:bg-amber-500 hover:text-red-600">
-            Back
-        </Link>
+        <div className="flex items-start w-full  ">
+            <Link 
+                to="/" 
+                className=" text-xl font-bold py-1 px-2 rounded-xl hover:bg-red-500 hover:text-white">
+                Back
+            </Link>
+        </div>
 
-        <h1 className="uppercase font-bold text-yellow-500 text-5xl  ">{pokemon.name}</h1>
+        <h1     
+            className="uppercase font-bold text-yellow-500 text-5xl  ">{pokemon.name}
+        </h1>
 
         <img
             src={pokemon.sprites.other["official-artwork"].front_default}
@@ -44,13 +50,16 @@
         />
 
         
-        <p className="text-green-700">{pokemon.types.map((t) => t.type.name).join(", ")}</p>
+        <p 
+            className="text-green-700">{pokemon.types.map((t) => t.type.name).join(", ")}
+        </p>
 
         <h2>Abilities</h2>
-        <p>{pokemon.abilities.map((a) => a.ability.name).join(", ")}</p>
+
+        <p className="border-2 p-2">{pokemon.abilities.map((a) => a.ability.name).join(", ")}</p>
 
         <h2>Stats</h2>
-        <ul>
+        <ul className="flex flex-wrap justify-center text-center items-center gap-10 m-4">
             {pokemon.stats.map((s) => (
             <li key={s.stat.name}>
                 <strong>{s.stat.name}:</strong> {s.base_stat}
