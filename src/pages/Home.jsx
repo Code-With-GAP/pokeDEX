@@ -135,7 +135,7 @@
 
             {/* Search div */}
             <div className="w-full m-4">
-                <div className="w-[100%]">
+                <div className="">
                     <input
                         type="text"
                         placeholder="Search Pokemon..."
@@ -150,7 +150,7 @@
                     />
                     <button
                         onClick={handleSearch}
-                        className="cursor-pointer w-[auto] bg-blue-600 text-white m-4 px-2 py-1 font-bold text-2xl rounded hover:bg-blue-700 mb-6">
+                        className="cursor-pointer bg-blue-600 text-white m-4 px-2 py-1 font-bold text-2xl rounded hover:bg-blue-700 mb-6">
                         Search
                     </button>
                 </div>
@@ -189,7 +189,7 @@
                 <Link
                     key={pokemon.id}
                     to={`/pokemon/${pokemon.name}`}
-                    className="rounded-xl p-4 flex flex-col items-center bg-black/90 text-white/40 shadow-black shadow-2xl transition-all duration-500 hover:scale-110 relative"
+                    className="rounded-xl p-4 flex flex-col items-center bg-white/90 text-white/40 shadow-[0_10px_10px_10px_black] transition-all duration-500 hover:scale-110 relative"
                 >
                     
                     <span  
