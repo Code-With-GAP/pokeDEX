@@ -115,7 +115,7 @@
     }, [page]);
 
     return (
-        <div className="bg-gray-800">
+        <div className="bg-yellow-500">
             <div className="w-full flex justify-center">
                 <img    
                     src="https://media.tenor.com/IR2IAAM1DX4AAAAM/h2di-pikachu-crazy.gif"      
@@ -157,7 +157,7 @@
 
                 {/* Suggestions */}
                 {suggestions.length > 0 && (
-                <div className="bg-white border border-gray-300 rounded mt-1 max-h-40 overflow-auto w-[80%] scrollbar:none hide-scrollbar">
+                <div className="bg-blue-400 border border-gray-300 rounded mt-1 max-h-40 overflow-auto w-[80%] scrollbar:none hide-scrollbar ">
                     {suggestions.map((item, index) => (
                     <div
                         key={index}
@@ -189,7 +189,7 @@
                 <Link
                     key={pokemon.id}
                     to={`/pokemon/${pokemon.name}`}
-                    className="rounded-xl p-4 flex flex-col items-center bg-white/90 text-white/40 shadow-[0_10px_10px_10px_black] transition-all duration-500 hover:scale-110 relative"
+                    className="rounded-xl p-4 flex flex-col items-center bg-blue-900 text-white/40 shadow-[0_10px_10px_10px_black] transition-all duration-500 hover:scale-110 relative"
                 >
                     
                     <span  
