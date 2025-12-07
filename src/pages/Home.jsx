@@ -11,7 +11,7 @@ export default function Home() {
   const [notification, setNotification] = useState("");
   const [loading, setLoading] = useState(true); // <-- loader state
 
-  const limit = 20;
+  const limit = 25;
 
   const typeColors = {
     fire: "bg-red-600",
@@ -41,7 +41,7 @@ export default function Home() {
 
   async function loadPokemons(page = 1) {
     try {
-      setLoading(true); // start loader
+      setLoading(true); 
       const offset = (page - 1) * limit;
       const res = await fetch(
         `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
@@ -55,9 +55,9 @@ export default function Home() {
       setPokemons(details);
     } catch (error) {
       console.error(error);
-      showNotification("Failed to load Pokémon.");
+      showNotification("FIALED TO LOAD POKEMON.");
     } finally {
-      setLoading(false); // stop loader
+      setLoading(false); 
     }
   }
 
@@ -75,28 +75,28 @@ export default function Home() {
 
   async function handleSearch() {
     if (!query.trim()) {
-      showNotification("Please type a Pokémon name!");
+      showNotification("NAAM TOH DAAL PAHLE MERE BHAI!");
       return;
     }
 
     const lowerQuery = query.toLowerCase();
 
     if (!allNames.includes(lowerQuery)) {
-      showNotification("Pokémon not found!");
+      showNotification("POKEMON NOT FOND!");
       return;
     }
 
     try {
-      setLoading(true); // show loader
+      setLoading(true); 
       const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${lowerQuery}`);
       const data = await res.json();
       setPokemons([data]);
       setSuggestions([]);
     } catch (error) {
-      showNotification("Failed to load Pokémon");
+      showNotification("FAILD TO LOAD POKEMON");
       console.error(error);
     } finally {
-      setLoading(false); // stop loader
+      setLoading(false); 
     }
   }
 
@@ -110,7 +110,7 @@ export default function Home() {
       .filter((name) => name.includes(query.toLowerCase()))
       .slice(0, 10);
 
-    setSuggestions(matches.length > 0 ? matches : ["No match found"]);
+    setSuggestions(matches.length > 0 ? matches : ["YE KONSA POKEMON HAI"]);
   }, [query, allNames, page]);
 
   useEffect(() => {
@@ -121,14 +121,14 @@ export default function Home() {
   return (
     <div className="bg-yellow-500 w-screen min-h-screen flex flex-wrap">
 
-      {/* Toast Notification */}
+      
       {notification && (
         <div className="fixed top-5 right-5 bg-red-600 text-white px-4 py-2 rounded shadow-lg z-50">
           {notification}
         </div>
       )}
 
-      {/* HERO SECTION */}
+      
       <div className="relative w-full">
         <img
           src="https://i.redd.it/ukbxkyy0yb7a1.gif"
@@ -136,13 +136,13 @@ export default function Home() {
           className="w-full h-auto max-h-[350px] object-cover "
         />
 
-        {/* Overlay area */}
+        
         <div className="absolute inset-0 flex flex-col items-center justify-end pb-8">
 
-          {/* Blurred search box container */}
-          <div className="backdrop-blur-md bg-white/20 p-4 rounded-xl shadow-xl w-[85%] ">
+          
+          <div className="backdrop-blur-md bg-white/200 p-4 rounded-xl shadow-xl w-[85%] ">
 
-            {/* Search Bar Row */}
+            
             <div className="flex  w-full">
               <input
                 type="text"
@@ -160,9 +160,10 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Suggestions */}
+            
             {suggestions.length > 0 && (
-              <div className="bg-white rounded mt-2 max-h-40 overflow-auto border text-center shadow-lg">
+              <div 
+                className="bg-white rounded mt-2 max-h-40 overflow-auto border text-center shadow-lg">
                 {suggestions.map((item, index) => (
                   <div
                     key={index}
@@ -184,7 +185,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Pokémon Cards */}
+      
       <div className="flex flex-wrap justify-center gap-10 p-10">
         {loading ? (
           <img
