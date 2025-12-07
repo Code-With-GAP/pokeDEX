@@ -54,15 +54,15 @@ export default function Detail() {
         const data = await res.json();
         setPokemon(data);
 
-        // species
+        
         const speciesRes = await fetch(data.species.url);
         const speciesData = await speciesRes.json();
 
-        // evolution chain
+        
         const evoRes = await fetch(speciesData.evolution_chain.url);
         const evoData = await evoRes.json();
 
-        // extract evolution list
+        
         const list = [];
         let current = evoData.chain;
         while (current) {
@@ -95,7 +95,7 @@ export default function Detail() {
   if (error)
     return (
       <h2 className="text-center mt-20 text-xl text-white">
-        Pokémon not found.
+        POKEMON NOT FOUND.
       </h2>
     );
 
@@ -106,7 +106,7 @@ export default function Detail() {
   return (
     <div className="p-4 flex flex-wrap justify-between text-center bg-blue-800 min-h-screen">
 
-      {/* Left Column: Image, Name, Types, Evolution */}
+      
       <div className="w-full md:w-[45%] flex flex-col items-center mb-10 md:mb-0">
 
         <div className="flex items-start w-full mb-4">
@@ -149,7 +149,7 @@ export default function Detail() {
           </div>
         </div>
 
-        {/* Types */}
+        
         <div className="flex gap-2 mt-3 justify-center flex-wrap">
           {pokemon.types.map((t) => (
             <span
@@ -162,7 +162,7 @@ export default function Detail() {
         </div>
       </div>
 
-      {/* Right Column: Abilities, Stats, Moves */}
+      
       <div className="w-full md:w-[50%] p-2 text-left flex flex-col justify-center items-center">
 
         {/* Abilities */}
@@ -193,7 +193,7 @@ export default function Detail() {
           })}
         </div>
 
-        {/* Moves */}
+        
         <h2 className="mt-6 text-2xl text-yellow-400 font-bold">Moves (first 10)</h2>
         <ul className="text-white text-xl font-bold list-disc list-inside">
           {pokemon.moves.slice(0, 10).map((m) => (
