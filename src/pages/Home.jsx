@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import pokeball from "../assets/pokeball.gif";
 
 export default function Home() {
   const [pokemons, setPokemons] = useState([]);
@@ -8,6 +9,7 @@ export default function Home() {
   const [suggestions, setSuggestions] = useState([]);
   const [page, setPage] = useState(1);
   const [notification, setNotification] = useState("");
+  const [loading, setLoading] = useState(true); // <-- loader state
 
   const limit = 20;
 
@@ -39,6 +41,7 @@ export default function Home() {
 
   async function loadPokemons(page = 1) {
     try {
+      setLoading(true); // start loader
       const offset = (page - 1) * limit;
       const res = await fetch(
         `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
@@ -53,6 +56,8 @@ export default function Home() {
     } catch (error) {
       console.error(error);
       showNotification("Failed to load Pokémon.");
+    } finally {
+      setLoading(false); // stop loader
     }
   }
 
@@ -82,6 +87,7 @@ export default function Home() {
     }
 
     try {
+      setLoading(true); // show loader
       const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${lowerQuery}`);
       const data = await res.json();
       setPokemons([data]);
@@ -89,6 +95,8 @@ export default function Home() {
     } catch (error) {
       showNotification("Failed to load Pokémon");
       console.error(error);
+    } finally {
+      setLoading(false); // stop loader
     }
   }
 
@@ -111,7 +119,7 @@ export default function Home() {
   }, [page]);
 
   return (
-    <div className="bg-yellow-500 w-screen min-h-screen">
+    <div className="bg-yellow-500 w-screen min-h-screen flex flex-wrap">
 
       {/* Toast Notification */}
       {notification && (
@@ -122,7 +130,6 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <div className="relative w-full">
-
         <img
           src="https://i.redd.it/ukbxkyy0yb7a1.gif"
           alt="bg-image"
@@ -178,39 +185,48 @@ export default function Home() {
       </div>
 
       {/* Pokémon Cards */}
-      <div className="flex flex-wrap justify-center gap-10 p-8">
-        {pokemons.map((pokemon) => (
-          <Link
-            key={pokemon.id}
-            to={`/pokemon/${pokemon.name}`}
-            className="rounded-xl p-4 flex flex-col items-center bg-blue-900 text-white/40 shadow-[0_10px_10px_10px_black] transition duration-500 hover:scale-110 relative"
-          >
-            <span className="absolute top-2 right-2 text-sm font-bold text-red-500">
-              {pokemon.id}
-            </span>
+      <div className="flex flex-wrap justify-center gap-10 p-10">
+        {loading ? (
+          <img
+            src={pokeball}
+            alt="loading..."
+            className="w-full h-screen"
+          />
+        ) : (
+          pokemons.map((pokemon) => (
+            <Link
+              key={pokemon.id}
+              to={`/pokemon/${pokemon.name}`}
+              className="rounded-xl p-4 flex flex-col items-center bg-blue-900 text-white/40 shadow-[0_10px_10px_10px_black] transition duration-500 hover:scale-110 relative"
+            >
+              <span className="absolute top-2 right-2 text-sm font-bold text-red-500">
+                {pokemon.id}
+              </span>
 
-            <h2 className="text-xl font-bold text-yellow-500 mb-2 uppercase">
-              {pokemon.name}
-            </h2>
+              <h2 className="text-xl font-bold text-yellow-500 mb-2 uppercase">
+                {pokemon.name}
+              </h2>
 
-            <img
-              src={pokemon.sprites.other['official-artwork'].front_default}
-              width={200}
-              alt={pokemon.name}
-            />
+              <img
+                src={pokemon.sprites.other['official-artwork'].front_default}
+                width={200}
+                alt={pokemon.name}
+                className="hover:scale-130 transition-all duration-500"
+              />
 
-            <div className="flex gap-2 mt-2">
-              {pokemon.types.map((t) => (
-                <span
-                  key={t.type.name}
-                  className={`px-4 py-1 text-xl font-semibold rounded-full text-white ${typeColors[t.type.name]}`}
-                >
-                  {t.type.name}
-                </span>
-              ))}
-            </div>
-          </Link>
-        ))}
+              <div className="flex gap-2 mt-2">
+                {pokemon.types.map((t) => (
+                  <span
+                    key={t.type.name}
+                    className={`px-4 py-1 text-xl font-semibold rounded-full text-white ${typeColors[t.type.name]}`}
+                  >
+                    {t.type.name}
+                  </span>
+                ))}
+              </div>
+            </Link>
+          ))
+        )}
       </div>
 
       {/* Pagination */}
@@ -220,14 +236,14 @@ export default function Home() {
           disabled={page === 1}
           className="bg-gray-300 px-4 py-2 rounded disabled:opacity-50"
         >
-          Previous
+          ⬅️
         </button>
         <span className="px-4 font-bold text-lg">Page {page}</span>
         <button
           onClick={() => setPage((p) => p + 1)}
           className="bg-gray-300 px-4 py-2 rounded"
         >
-          Next
+          ➡️
         </button>
       </div>
     </div>
