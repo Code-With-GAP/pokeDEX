@@ -206,7 +206,7 @@ export default function Detail() {
           <div className="mt-6 flex justify-center items-center">
             <Link to="/game">
               <button className="px-6 py-2 bg-green-600 text-white rounded-xl text-xl font-bold hover:bg-green-700">
-                 Play Guessing Game
+                 Wanna Play Pokemon Game 
               </button>
             </Link>
           </div>

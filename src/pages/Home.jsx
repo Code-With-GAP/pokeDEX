@@ -191,7 +191,7 @@ export default function Home() {
           <img
             src={pokeball}
             alt="loading..."
-            className="w-full h-screen"
+            className="w-screen h-screen"
           />    
         ) : (
           pokemons.map((pokemon) => (
