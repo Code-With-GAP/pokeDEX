@@ -165,7 +165,7 @@ export default function Detail() {
       try {
         setLoading(true);
 
-        // Fetch main Pokémon data
+        // main pokemon ka data
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
         if (!res.ok) {
           setError(true);
@@ -174,7 +174,7 @@ export default function Detail() {
         const data = await res.json();
         setPokemon(data);
 
-        // Fetch species
+        // species
         const speciesRes = await fetch(data.species.url);
         const speciesData = await speciesRes.json();
 
@@ -212,7 +212,7 @@ export default function Detail() {
   const next = evolutionList[currentIndex + 1];
 
   return (
-    <div className="p-4 flex flex-col text-center bg-gray-600 justify-center items-center">
+    <div className="p-4 flex flex-col text-center bg-blue-800 justify-center items-center">
 
       {/* Home Button */}
       <div className="flex items-start w-full">
@@ -272,12 +272,12 @@ export default function Detail() {
         ))}
       </div>
 
-      <h2 className="mt-4 text-2xl text-white font-bold">Abilities</h2>
+      <h2 className="mt-4 text-2xl text-yellow-400 font-bold">Abilities</h2>
       <p className="border-2 p-2 text-white">
         {pokemon.abilities.map((a) => a.ability.name).join(", ")}
       </p>
 
-      <h2 className="mt-4 text-2xl text-white font-bold">Stats</h2>
+      <h2 className="mt-4 text-2xl text-yellow-400 font-bold">Stats</h2>
       <ul className="flex flex-wrap justify-center text-center items-center gap-10 m-4 text-white">
         {pokemon.stats.map((s) => (
           <li key={s.stat.name}>
@@ -286,7 +286,7 @@ export default function Detail() {
         ))}
       </ul>
 
-      <h2 className="mt-4 text-2xl text-white font-bold">Moves (first 10)</h2>
+      <h2 className="mt-4 text-2xl text-yellow-400 font-bold">Moves (first 10)</h2>
       <ul className="text-white">
         {pokemon.moves.slice(0, 10).map((m) => (
           <li key={m.move.name}>{m.move.name}</li>
