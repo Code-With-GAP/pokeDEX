@@ -124,7 +124,7 @@ export default function Home() {
       <div className="relative w-full">
 
         <img
-          src="https://preview.redd.it/transparent-gifs-i-made-from-the-pok%C3%A9mon-anime-for-an-v0-eti95tjbyb7a1.gif?width=640&crop=smart&auto=webp&s=79fa1786cfafb7d807f326cb96037e4559c6b27b"
+          src="https://i.redd.it/ukbxkyy0yb7a1.gif"
           alt="bg-image"
           className="w-full h-auto max-h-[350px] object-cover "
         />
@@ -133,21 +133,21 @@ export default function Home() {
         <div className="absolute inset-0 flex flex-col items-center justify-end pb-8">
 
           {/* Blurred search box container */}
-          <div className="backdrop-blur-md bg-white/20 p-4 rounded-xl shadow-xl w-[85%] max-w-2xl">
+          <div className="backdrop-blur-md bg-white/20 p-4 rounded-xl shadow-xl w-[85%] ">
 
             {/* Search Bar Row */}
-            <div className="flex flex-wrap w-full">
+            <div className="flex  w-full">
               <input
                 type="text"
                 placeholder="Search Pokémon..."
-                className="flex-1 border border-gray-300 rounded-l px-4 py-2 bg-amber-300 font-bold text-xl outline-none"
+                className="flex border w-[90%] border-gray-300 rounded-l px-1 py-2 bg-amber-300 font-bold text-xl outline-none"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}
               />
               <button
                 onClick={handleSearch}
-                className="bg-blue-600 text-white px-4 py-2 text-xl font-bold rounded-r hover:bg-blue-700"
+                className="bg-blue-600 text-white px-2 py-2 text-xl font-bold rounded-r hover:bg-blue-700"
               >
                 Search
               </button>
