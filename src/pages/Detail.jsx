@@ -202,6 +202,16 @@ export default function Detail() {
         </ul>
 
       </div>
+
+          <div className="mt-6">
+            <Link to="/game">
+              <button className="px-6 py-2 bg-green-600 text-white rounded-xl text-xl font-bold hover:bg-green-700">
+                 Play Guessing Game
+              </button>
+            </Link>
+          </div>
+
+
     </div>
   );
 }
